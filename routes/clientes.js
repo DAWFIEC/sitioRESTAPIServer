@@ -16,4 +16,20 @@ router.get('/', function(req, res, next) {
     .catch(error => res.status(400).send(error))
 });
 
+router.post('/', function(req, res, next) {
+  let nombre = req.body.nombre;
+  let apellido = req.body.apellido;
+  let fechanacimiento = req.body.fechanacimiento
+
+  models.clientes.create({
+    nombre: nombre,
+    apellido: apellido,
+    fechaNacimiento: fechanacimiento
+
+  })
+  .then(cliente => res.redirect('http://localhost:4200/'))
+  .catch(error => res.status(400).send(error));
+
+});
+
 module.exports = router;
